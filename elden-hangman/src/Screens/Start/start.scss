@@ -1,0 +1,33 @@
+#start-screen{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .logo{
+        opacity: .6;
+        position: absolute;
+        left:0;
+        right:0;
+        margin-left: auto;
+        margin-right: auto;
+        filter: saturate(1.3);
+        margin-top: 20px;
+        max-height: 80vh;
+    }
+
+    .title{
+        margin-top: 18vh;
+        width: 70vw;
+        filter: saturate(2.5);
+    }
+
+    .press-any-button{
+        position: absolute;
+        bottom: 5vh;
+        width:600px;
+        left:0;
+        right:0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
