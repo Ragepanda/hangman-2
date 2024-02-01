@@ -4,36 +4,42 @@ import './start.scss'
 import logo from '../../Assets/elden-ring-logo.png'
 import title from '../../Assets/Elden-Ring-Title.png'
 import pressAnyButton from '../../Assets/Press-any-button-1.gif'
+import pressAnyButtonActivated from '../../Assets/Press-any-button-2.gif'
 import gameStartSound from '../../Assets/sounds/game-start.mp3'
 import titleThemeSound from '../../Assets/sounds/title-theme.mp3'
 
-const Start = () => {
-  const [gameState, setGameState] = useState('warning')
-  const [gameStart] = useSound(gameStartSound, [])
-  const [titleTheme] = useSound(titleThemeSound, [])
+// eslint-disable-next-line react/prop-types
+const Start = ({ updateAppState }) => {
+  const [openingState, setOpeningState] = useState('warning')
+  const [gameStart] = useSound(gameStartSound, { volume: 0.5 }, [])
+  const [titleTheme, { stop: stopTheme }] = useSound(titleThemeSound, { volume: 0.4 }, [])
 
-  const gameStartCallback = () => {
-    console.log('key press')
+  const gameStartCallback = async () => {
     gameStart()
+    setOpeningState('play')
+    setTimeout(() => {
+      stopTheme()
+      updateAppState('play')
+    }, 730)
   }
 
   const warningClick = useCallback(async () => {
-    setGameState('start')
+    setOpeningState('start')
   }, [])
 
   return <div
       tabIndex={'0'}
-      id={gameState === 'warning' ? 'warning-screen' : 'start-screen'}
-      onMouseDown={gameState === 'warning' ? titleTheme : undefined}
-      onClick={gameState === 'warning' ? warningClick : gameStartCallback}
-      onKeyDownCapture={gameState === 'warning' ? undefined : gameStartCallback}
+      id={openingState === 'warning' ? 'warning-screen' : 'start-screen'}
+      onMouseDown={openingState === 'warning' ? titleTheme : undefined}
+      onClick={openingState === 'warning' ? warningClick : gameStartCallback}
+      onKeyDownCapture={openingState === 'warning' ? undefined : gameStartCallback}
     >
-      {gameState === 'warning'
+      {openingState === 'warning'
         ? <p>This App utilizes sound! Please adjust volume accordingly. Click anywhere to continue...</p>
         : <>
         <img className="logo" src={logo} />
         <img className="title" src={title} />
-        <img className="press-any-button" src={pressAnyButton} /> </>}
+        <img className="press-any-button" src={openingState === 'start' ? pressAnyButton : pressAnyButtonActivated } /> </>}
     </div>
 }
 export default Start

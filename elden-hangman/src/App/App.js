@@ -1,7 +1,7 @@
 import './App.scss'
 import React, { useState } from 'react'
 import Start from '../Screens/Start'
-import Warning from '../Screens/Warning'
+import Play from '../Screens/Play'
 
 function App () {
   const [appState, setAppState] = useState('start')
@@ -11,8 +11,8 @@ function App () {
   }
   return (
     <div className="App">
-      {appState === 'warning' ? <Warning setAppState={updateAppState} /> : '' }
-      {appState === 'start' ? <Start /> : '' }
+      {appState === 'start' ? <Start updateAppState={updateAppState}/> : '' }
+      {appState === 'play' ? <Play updateAppState={updateAppState}/> : '' }
     </div>
   )
 }
