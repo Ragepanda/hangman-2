@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './hangman.scss'
+import Letter from './letter'
 
-const Hangman = () => {
+// eslint-disable-next-line react/prop-types
+const Hangman = ({ wins, setWins }) => {
   const [word, setWord] = useState('')
   const [guessedLetters, setGuessedLetters] = useState([])
   const [remainingAttempts, setRemainingAttempts] = useState(6)
@@ -41,9 +43,7 @@ const Hangman = () => {
 
   // Pick a random word from the list
   const getRandomWord = () => {
-    // return words[Math.floor(Math.random() * words.length)]
-    console.log(words[3])
-    return words[3]
+    return words[Math.floor(Math.random() * words.length)]
   }
 
   // Initialize a new game
@@ -53,6 +53,19 @@ const Hangman = () => {
     setRemainingAttempts(6)
     setGameState('playing')
   }
+
+  const handleKeyPress = useCallback((key) => {
+    if (key.key.match(/[a-zA-Z]/i) && key.key.length === 1 && gameState === 'playing' && !isLetterAlreadyGuessed(key.key.toUpperCase())) {
+      handleGuess(key.key.toUpperCase())
+    }
+  })
+
+  useEffect(() => {
+    document.addEventListener('keyup', handleKeyPress)
+    return () => {
+      document.removeEventListener('keyup', handleKeyPress)
+    }
+  }, [handleKeyPress])
 
   // Check if a letter has already been guessed
   const isLetterAlreadyGuessed = letter => {
@@ -81,6 +94,7 @@ const Hangman = () => {
     const wordLetters = word.split('')
     const guessedWord = wordLetters.every(letter => newGuessedLetters.includes(letter.toUpperCase()))
     if (guessedWord) {
+      setWins(wins + 1)
       setGameState('won')
     }
 
@@ -98,9 +112,7 @@ const Hangman = () => {
       if (guessedLetters.includes(word[i].toUpperCase())) renderedWord += `${word[i]} `
       else renderedWord += '_ '
     }
-    console.log(renderedWord)
     return renderedWord
-    // return word.split('').map(letter => (guessedLetters.includes(letter) ? letter : letter === ' ' || letter === ',' ? '  ' : '_ '))
   }, [guessedLetters])
 
   useEffect(() => {
@@ -109,23 +121,17 @@ const Hangman = () => {
 
   return (
     <div className="hangman-game">
-      <h1>Hangman Game</h1>
+      <h1>Elden Ring Hangman</h1>
       {gameState === 'playing' && (
         <>
           <div className='hangman-text'>{renderWord()}</div>
           <div>Remaining Attempts: {remainingAttempts}</div>
           <div>
             <p>Guessed Letters:</p>
-            <div>
+            <div className='hangman-button-container'>
               {Array.from(Array(26), (_, i) => String.fromCharCode('A'.charCodeAt(0) + i)).map(
                 letter => (
-                  <button
-                    key={letter}
-                    onClick={() => handleGuess(letter)}
-                    disabled={isLetterAlreadyGuessed(letter)}
-                  >
-                    {letter}
-                  </button>
+                  <Letter key={letter} letter={letter} disabled={isLetterAlreadyGuessed(letter)} handleGuess={handleGuess}/>
                 )
               )}
             </div>
