@@ -7,6 +7,7 @@ import pressAnyButton from '../../Assets/Press-any-button-1.gif'
 import pressAnyButtonActivated from '../../Assets/Press-any-button-2.gif'
 import gameStartSound from '../../Assets/sounds/game-start.mp3'
 import titleThemeSound from '../../Assets/sounds/title-theme.mp3'
+import Letter from '../Play/Components/letter'
 
 // eslint-disable-next-line react/prop-types
 const Start = ({ updateAppState }) => {
@@ -29,17 +30,15 @@ const Start = ({ updateAppState }) => {
 
   return <div
       tabIndex={'0'}
-      id={openingState === 'warning' ? 'warning-screen' : 'start-screen'}
+      id={'start-screen'}
       onMouseDown={openingState === 'warning' ? titleTheme : undefined}
       onClick={openingState === 'warning' ? warningClick : gameStartCallback}
       onKeyDownCapture={openingState === 'warning' ? undefined : gameStartCallback}
     >
-      {openingState === 'warning'
-        ? <p>This App utilizes sound! Please adjust volume accordingly. Click anywhere to continue...</p>
-        : <>
+       {openingState === 'warning' ? <div className='warning-modal'><p>To become the Elden Lord, seek out the ten sites of grace.</p><Letter letter={'Close'} disabled={false} handleGuess={() => {}}></Letter></div> : null}
         <img className="logo" src={logo} />
         <img className="title" src={title} />
-        <img className="press-any-button" src={openingState === 'start' ? pressAnyButton : pressAnyButtonActivated } /> </>}
+        <img className="press-any-button" src={openingState === 'start' || openingState === 'warning' ? pressAnyButton : pressAnyButtonActivated } />
     </div>
 }
 export default Start

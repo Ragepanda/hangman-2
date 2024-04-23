@@ -1,0 +1,23 @@
+button.menu-button {
+    font-size: x-large;
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 15px;
+    border: 2px solid #93895d;
+    background-color: transparent;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  button.menu-button:hover {
+    background-color: #93895d;
+  }
+
+  button.menu-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: black;
+    }
