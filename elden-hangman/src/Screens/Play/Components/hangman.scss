@@ -61,6 +61,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     width: 90vw;
+    font-size: x-large;
   }
 
   .hangman-text {
@@ -68,9 +69,6 @@
     max-width: 70vw;
   }
 
-  div {
-    font-size: x-large;
-  }
 
   .hangman-button-container {
     display: flex;

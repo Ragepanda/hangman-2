@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import './hangman.scss'
 import Letter from './letter'
 import Item from './item'
+import Banner from './banner'
 
 // eslint-disable-next-line react/prop-types
 const Hangman = ({ wins, setWins }) => {
@@ -52,6 +53,8 @@ const Hangman = ({ wins, setWins }) => {
 
   // Initialize a new game
   const initializeGame = () => {
+    if (gameState === 'won') { setWins(wins + 1) }
+    if (gameState === 'lost' && wins > 0) { setWins(wins - 1) }
     setWord(getRandomWord())
     setGuessedLetters([' ', ','])
     setRemainingAttempts(6)
@@ -112,7 +115,6 @@ const Hangman = ({ wins, setWins }) => {
       newGuessedLetters.includes(letter.toUpperCase())
     )
     if (guessedWord) {
-      setWins(wins + 1)
       setGameState('won')
     }
 
@@ -166,11 +168,9 @@ const Hangman = ({ wins, setWins }) => {
           </div>
         </>
       )}
-      {gameState === 'won' && <h2>Congratulations! You won!</h2>}
-      {gameState === 'lost' && <h2>Sorry, you lost. The word was: {word}</h2>}
-      {gameState !== 'playing' && (
-        <button onClick={initializeGame}>New Game</button>
-      )}
+      {gameState === 'won' && <Banner isWin={true} />}
+      {gameState === 'lost' && <div><Banner isWin={false} /> <h2>The word was: {word}</h2></div>}
+      {gameState !== 'playing' && <Letter key={'restart-game-button'} disabled={false} handleGuess={initializeGame} letter={'Next Boss'}/>}
     </div>
   )
 }

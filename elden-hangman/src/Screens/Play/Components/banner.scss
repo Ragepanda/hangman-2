@@ -1,0 +1,19 @@
+.victory-banner {
+    width: 100vw;
+    background-color: rgba(0,0,0,.8);
+    font-size: 96px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 5s;
+}
+
+.you-died {
+    color: red;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
