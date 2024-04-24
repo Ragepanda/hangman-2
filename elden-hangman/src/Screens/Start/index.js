@@ -35,7 +35,7 @@ const Start = ({ updateAppState }) => {
       onClick={openingState === 'warning' ? warningClick : gameStartCallback}
       onKeyDownCapture={openingState === 'warning' ? undefined : gameStartCallback}
     >
-       {openingState === 'warning' ? <div className='warning-modal'><p>To become the Elden Lord, seek out the ten sites of grace.</p><Letter letter={'Close'} disabled={false} handleGuess={() => {}}></Letter></div> : null}
+       {openingState === 'warning' ? <div className='warning-modal'><p>To become the Elden Lord, defeat your enemies and seek out the ten shards of grace.</p> <p>Thank you for playing my game! Please enable volume for a full experience.</p><Letter letter={'Close'} disabled={false} handleGuess={() => {}}></Letter></div> : null}
         <img className="logo" src={logo} />
         <img className="title" src={title} />
         <img className="press-any-button" src={openingState === 'start' || openingState === 'warning' ? pressAnyButton : pressAnyButtonActivated } />

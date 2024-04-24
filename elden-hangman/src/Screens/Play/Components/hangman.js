@@ -3,6 +3,8 @@ import './hangman.scss'
 import Letter from './letter'
 import Item from './item'
 import Banner from './banner'
+import clickSound from '../../../Assets/sounds/ui-click.mp3'
+import useSound from 'use-sound'
 
 // eslint-disable-next-line react/prop-types
 const Hangman = ({ wins, setWins }) => {
@@ -10,6 +12,8 @@ const Hangman = ({ wins, setWins }) => {
   const [guessedLetters, setGuessedLetters] = useState([])
   const [remainingAttempts, setRemainingAttempts] = useState(6)
   const [gameState, setGameState] = useState('playing') // playing, won, lost
+
+  const [click] = useSound(clickSound, { volume: 1.5 }, [])
 
   // Words for the game
   const words = [
@@ -67,7 +71,13 @@ const Hangman = ({ wins, setWins }) => {
       gameState === 'playing' &&
       !isLetterAlreadyGuessed(key.key.toUpperCase())
     ) {
+      click()
       handleGuess(key.key.toUpperCase())
+    }
+
+    if (key.key === 'Enter' && gameState !== 'playing') {
+      click()
+      initializeGame()
     }
   })
 

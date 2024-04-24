@@ -50,10 +50,15 @@
 
     p {
         margin: 20px;
-        border-top: 3px solid #93895d;
         border-bottom: 3px solid #93895d;
-        padding-top: 30px;
         padding-bottom: 30px;
+    }
+
+    p:first-of-type {
+        border-top: 3px solid #93895d;
+        border-bottom: 0;
+        padding-top: 30px;
+        padding-bottom:0px;
     }
 
     z-index: 1;
