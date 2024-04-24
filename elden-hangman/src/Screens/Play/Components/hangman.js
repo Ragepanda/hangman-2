@@ -47,8 +47,7 @@ const Hangman = ({ wins, setWins }) => {
 
   // Pick a random word from the list
   const getRandomWord = () => {
-    // return words[Math.floor(Math.random() * words.length)]
-    return words[22]
+    return words[Math.floor(Math.random() * words.length)]
   }
 
   // Initialize a new game
