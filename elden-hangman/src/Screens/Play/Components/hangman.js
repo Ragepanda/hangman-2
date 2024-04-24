@@ -12,6 +12,7 @@ const Hangman = ({ wins, setWins }) => {
   const [guessedLetters, setGuessedLetters] = useState([])
   const [remainingAttempts, setRemainingAttempts] = useState(6)
   const [gameState, setGameState] = useState('playing') // playing, won, lost
+  const [guessedBosses, setGuessedBosses] = useState([])
 
   const [click] = useSound(clickSound, { volume: 1.5 }, [])
 
@@ -51,6 +52,11 @@ const Hangman = ({ wins, setWins }) => {
 
   // Pick a random word from the list
   const getRandomWord = () => {
+    let word = ''
+    while (word === '') {
+      const randomWord = words[Math.floor(Math.random() * words.length)]
+      if (!guessedBosses.includes(randomWord)) { word = randomWord }
+    }
     return words[Math.floor(Math.random() * words.length)]
   }
 
@@ -124,7 +130,11 @@ const Hangman = ({ wins, setWins }) => {
       newGuessedLetters.includes(letter.toUpperCase())
     )
     if (guessedWord) {
-      setGameState('won')
+      setGameState('transition')
+      setTimeout(() => {
+        setGuessedBosses([...guessedBosses, word])
+        setGameState('won')
+      }, 1500)
     }
 
     // Check if the game is lost
@@ -152,10 +162,10 @@ const Hangman = ({ wins, setWins }) => {
   return (
     <div className="hangman-game">
       {/* <h1>Elden Ring Hangman</h1> */}
-      {gameState === 'playing' && (
+      {(gameState === 'playing' || gameState === 'transition') && (
         <>
           <div className="hangman-text">
-            <p>{renderWord()}</p>
+            <p className={gameState === 'transition' ? 'hangman-text-transition' : null}>{renderWord()}</p>
           </div>
 
           <div className="hangman-button-container">
@@ -179,7 +189,7 @@ const Hangman = ({ wins, setWins }) => {
       )}
       {gameState === 'won' && <Banner isWin={true} />}
       {gameState === 'lost' && <div><Banner isWin={false} /> <h2>The word was: {word}</h2></div>}
-      {gameState !== 'playing' && <Letter key={'restart-game-button'} disabled={false} handleGuess={initializeGame} letter={'Next Boss'}/>}
+      {(gameState === 'lost' || gameState === 'won') && <Letter key={'restart-game-button'} disabled={false} handleGuess={initializeGame} letter={'Next Boss'}/>}
     </div>
   )
 }

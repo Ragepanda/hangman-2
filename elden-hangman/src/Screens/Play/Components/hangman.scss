@@ -67,6 +67,12 @@
   .hangman-text {
     font-size: x-large;
     max-width: 70vw;
+
+    .hangman-text-transition {
+      color: white;
+      font-size: 48px;
+      transition: font-size 1.5s;
+    }
   }
 
 
@@ -90,6 +96,11 @@
   @media (max-width: 580px) {
     .hangman-text {
       font-size: large;
+    }
+    .hangman-text-transition {
+      color: white;
+      font-size: large;
+      transition: font-size 1.5s;
     }
   }
 }
