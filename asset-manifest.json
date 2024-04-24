@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/hangman-2/static/css/main.f5f23e15.css",
-    "main.js": "/hangman-2/static/js/main.1a31690a.js",
+    "main.css": "/hangman-2/static/css/main.b3bd8b9b.css",
+    "main.js": "/hangman-2/static/js/main.9872d93f.js",
     "static/js/845.5ec3e5d7.chunk.js": "/hangman-2/static/js/845.5ec3e5d7.chunk.js",
     "static/media/title-theme.mp3": "/hangman-2/static/media/title-theme.4745cc8a9edfba510e6b.mp3",
     "static/media/Press-any-button-1.gif": "/hangman-2/static/media/Press-any-button-1.e84fdbd61e24939f47bb.gif",
@@ -23,13 +23,14 @@
     "static/media/game-start.mp3": "/hangman-2/static/media/game-start.75f79edaeb834b4ea03c.mp3",
     "static/media/crimson-tears.png": "/hangman-2/static/media/crimson-tears.4898639552320b366ecf.png",
     "static/media/grace.png": "/hangman-2/static/media/grace.c35354038831dde2cee8.png",
+    "static/media/ui-click.mp3": "/hangman-2/static/media/ui-click.8233ef5bdbe83b672159.mp3",
     "index.html": "/hangman-2/index.html",
-    "main.f5f23e15.css.map": "/hangman-2/static/css/main.f5f23e15.css.map",
-    "main.1a31690a.js.map": "/hangman-2/static/js/main.1a31690a.js.map",
+    "main.b3bd8b9b.css.map": "/hangman-2/static/css/main.b3bd8b9b.css.map",
+    "main.9872d93f.js.map": "/hangman-2/static/js/main.9872d93f.js.map",
     "845.5ec3e5d7.chunk.js.map": "/hangman-2/static/js/845.5ec3e5d7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5f23e15.css",
-    "static/js/main.1a31690a.js"
+    "static/css/main.b3bd8b9b.css",
+    "static/js/main.9872d93f.js"
   ]
 }
