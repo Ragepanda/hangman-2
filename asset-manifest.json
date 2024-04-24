@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/hangman-2/static/css/main.f5f23e15.css",
+    "main.js": "/hangman-2/static/js/main.1a31690a.js",
+    "static/js/845.5ec3e5d7.chunk.js": "/hangman-2/static/js/845.5ec3e5d7.chunk.js",
+    "static/media/title-theme.mp3": "/hangman-2/static/media/title-theme.4745cc8a9edfba510e6b.mp3",
+    "static/media/Press-any-button-1.gif": "/hangman-2/static/media/Press-any-button-1.e84fdbd61e24939f47bb.gif",
+    "static/media/elden-ring-logo.png": "/hangman-2/static/media/elden-ring-logo.52e9f5780fb94247d014.png",
+    "static/media/0.jpg": "/hangman-2/static/media/0.eb82868159a96e101afb.jpg",
+    "static/media/6.jpg": "/hangman-2/static/media/6.1cb359a549aa0e8fdd6e.jpg",
+    "static/media/Press-any-button-2.gif": "/hangman-2/static/media/Press-any-button-2.93186f3fd49ca7ade807.gif",
+    "static/media/1.jpg": "/hangman-2/static/media/1.a71274fe623b79e080bc.jpg",
+    "static/media/3.jpg": "/hangman-2/static/media/3.58b928588f3021152cc2.jpg",
+    "static/media/8.jpg": "/hangman-2/static/media/8.40fd480c06147c1e230a.jpg",
+    "static/media/9.jpg": "/hangman-2/static/media/9.d7283d10a1d620c6fe77.jpg",
+    "static/media/7.jpg": "/hangman-2/static/media/7.4909b1d224b663a1fd37.jpg",
+    "static/media/2.jpg": "/hangman-2/static/media/2.e5e3f5518797bf6e607a.jpg",
+    "static/media/4.jpg": "/hangman-2/static/media/4.accc01082585de7128f1.jpg",
+    "static/media/5.jpg": "/hangman-2/static/media/5.d80a69f3fd35c5e2c747.jpg",
+    "static/media/you-died.mp3": "/hangman-2/static/media/you-died.fd37ebf47e7c1e3fa04e.mp3",
+    "static/media/enemy-felled.mp3": "/hangman-2/static/media/enemy-felled.37d88e998acfdd82cfc7.mp3",
+    "static/media/Elden-Ring-Title.png": "/hangman-2/static/media/Elden-Ring-Title.ef716b9c95ddae758aca.png",
+    "static/media/game-start.mp3": "/hangman-2/static/media/game-start.75f79edaeb834b4ea03c.mp3",
+    "static/media/crimson-tears.png": "/hangman-2/static/media/crimson-tears.4898639552320b366ecf.png",
+    "static/media/grace.png": "/hangman-2/static/media/grace.c35354038831dde2cee8.png",
+    "index.html": "/hangman-2/index.html",
+    "main.f5f23e15.css.map": "/hangman-2/static/css/main.f5f23e15.css.map",
+    "main.1a31690a.js.map": "/hangman-2/static/js/main.1a31690a.js.map",
+    "845.5ec3e5d7.chunk.js.map": "/hangman-2/static/js/845.5ec3e5d7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5f23e15.css",
+    "static/js/main.1a31690a.js"
+  ]
+}
