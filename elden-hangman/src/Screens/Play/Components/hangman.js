@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './hangman.scss'
 import Letter from './letter'
+import Item from './item'
 
 // eslint-disable-next-line react/prop-types
 const Hangman = ({ wins, setWins }) => {
@@ -10,7 +11,8 @@ const Hangman = ({ wins, setWins }) => {
   const [gameState, setGameState] = useState('playing') // playing, won, lost
 
   // Words for the game
-  const words = ['Margit the Fell Omen',
+  const words = [
+    'Margit the Fell Omen',
     'Godrick the Grafted',
     'Red Wolf of Radagon',
     'Rennala, Queen of the Full Moon',
@@ -39,11 +41,13 @@ const Hangman = ({ wins, setWins }) => {
     'Maliketh, the Black Blade',
     'Lichdragon Fortissax',
     'Mohg, Lord of Blood',
-    'Hoarah Loux, Warrior']
+    'Hoarah Loux, Warrior'
+  ]
 
   // Pick a random word from the list
   const getRandomWord = () => {
-    return words[Math.floor(Math.random() * words.length)]
+    // return words[Math.floor(Math.random() * words.length)]
+    return words[22]
   }
 
   // Initialize a new game
@@ -55,7 +59,12 @@ const Hangman = ({ wins, setWins }) => {
   }
 
   const handleKeyPress = useCallback((key) => {
-    if (key.key.match(/[a-zA-Z]/i) && key.key.length === 1 && gameState === 'playing' && !isLetterAlreadyGuessed(key.key.toUpperCase())) {
+    if (
+      key.key.match(/[a-zA-Z]/i) &&
+      key.key.length === 1 &&
+      gameState === 'playing' &&
+      !isLetterAlreadyGuessed(key.key.toUpperCase())
+    ) {
       handleGuess(key.key.toUpperCase())
     }
   })
@@ -68,17 +77,24 @@ const Hangman = ({ wins, setWins }) => {
   }, [handleKeyPress])
 
   // Check if a letter has already been guessed
-  const isLetterAlreadyGuessed = letter => {
+  const isLetterAlreadyGuessed = (letter) => {
     return guessedLetters.includes(letter)
   }
 
   // Check if the guessed letter is in the word
-  const isLetterInWord = letter => {
-    if (typeof word === 'string') { return word.includes(letter.toUpperCase()) || word.includes(letter.toLowerCase()) } else { return false }
+  const isLetterInWord = (letter) => {
+    if (typeof word === 'string') {
+      return (
+        word.includes(letter.toUpperCase()) ||
+        word.includes(letter.toLowerCase())
+      )
+    } else {
+      return false
+    }
   }
 
   // Handle user input
-  const handleGuess = letter => {
+  const handleGuess = (letter) => {
     if (gameState !== 'playing' || isLetterAlreadyGuessed(letter)) {
       return
     }
@@ -92,7 +108,9 @@ const Hangman = ({ wins, setWins }) => {
 
     // Check if the game is won
     const wordLetters = word.split('')
-    const guessedWord = wordLetters.every(letter => newGuessedLetters.includes(letter.toUpperCase()))
+    const guessedWord = wordLetters.every((letter) =>
+      newGuessedLetters.includes(letter.toUpperCase())
+    )
     if (guessedWord) {
       setWins(wins + 1)
       setGameState('won')
@@ -109,8 +127,9 @@ const Hangman = ({ wins, setWins }) => {
   const renderWord = useCallback(() => {
     let renderedWord = ''
     for (let i = 0; i < word.length; i++) {
-      if (guessedLetters.includes(word[i].toUpperCase())) renderedWord += `${word[i]} `
-      else renderedWord += '_ '
+      if (guessedLetters.includes(word[i].toUpperCase())) {
+        renderedWord += `${word[i]} `
+      } else renderedWord += '_ '
     }
     return renderedWord
   }, [guessedLetters])
@@ -121,26 +140,37 @@ const Hangman = ({ wins, setWins }) => {
 
   return (
     <div className="hangman-game">
-      <h1>Elden Ring Hangman</h1>
+      {/* <h1>Elden Ring Hangman</h1> */}
       {gameState === 'playing' && (
         <>
-          <div className='hangman-text'>{renderWord()}</div>
-          <div>Remaining Attempts: {remainingAttempts}</div>
-          <div>
-            <p>Guessed Letters:</p>
-            <div className='hangman-button-container'>
-              {Array.from(Array(26), (_, i) => String.fromCharCode('A'.charCodeAt(0) + i)).map(
-                letter => (
-                  <Letter key={letter} letter={letter} disabled={isLetterAlreadyGuessed(letter)} handleGuess={handleGuess}/>
-                )
-              )}
-            </div>
+          <div className="hangman-text">
+            <p>{renderWord()}</p>
+          </div>
+
+          <div className="hangman-button-container">
+            {Array.from(Array(26), (_, i) =>
+              String.fromCharCode('A'.charCodeAt(0) + i)
+            ).map((letter) => (
+              <Letter
+                key={letter}
+                letter={letter}
+                disabled={isLetterAlreadyGuessed(letter)}
+                handleGuess={handleGuess}
+              />
+            ))}
+          </div>
+          <div className="hangman-status">
+            <Item count={remainingAttempts} isFlask={true} />
+
+            <Item count={wins} isFlask={false} />
           </div>
         </>
       )}
       {gameState === 'won' && <h2>Congratulations! You won!</h2>}
       {gameState === 'lost' && <h2>Sorry, you lost. The word was: {word}</h2>}
-      <button onClick={initializeGame}>New Game</button>
+      {gameState !== 'playing' && (
+        <button onClick={initializeGame}>New Game</button>
+      )}
     </div>
   )
 }

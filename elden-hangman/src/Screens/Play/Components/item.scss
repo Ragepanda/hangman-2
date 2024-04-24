@@ -1,0 +1,18 @@
+.item-container{
+    position: relative;
+    width: 150px;
+    height: 180px;
+    margin: auto;
+    color: white;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 2%;
+    float: right;
+    img{ 
+        width:150px;
+    }
+    span {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+    }
+}
