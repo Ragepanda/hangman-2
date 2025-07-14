@@ -9,7 +9,7 @@ Several years ago I made a Dark Souls themed hangman game using JS/JQuery. It wa
 React 18, SASS and JavaScript. This was also a nice chance to try out the use-sound package to add sounds to my reactive elements. 
 
 ## Try it yourself!
-The game is currently hosted(ragepanda.github.io/hangman-2) if you're curious to see it. If you do decide to check it out, please share your thoughts!
+The game is currently [hosted](ragepanda.github.io/hangman-2) if you're curious to see it. If you do decide to check it out, please share your thoughts!
 
 
 
